@@ -8,11 +8,11 @@ DROP TABLE IF EXISTS `t_auth_element_operation`;
 CREATE TABLE `t_auth_element_operation`
 (
     `id`            bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `elementName`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '页面元素名称',
-    `elementCode`   varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '页面元素唯一编码',
-    `operationType` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci   NULL DEFAULT NULL COMMENT '操作类型：0可点击  1可见',
-    `createTime`    datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime`    datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `element_name`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '页面元素名称',
+    `element_code`  varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '页面元素唯一编码',
+    `operation_type` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci   NULL DEFAULT NULL COMMENT '操作类型：0可点击  1可见',
+    `create_time`   datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time`   datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
@@ -29,8 +29,8 @@ CREATE TABLE `t_auth_menu`
     `id`         bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
     `name`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '菜单项目名称',
     `code`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '唯一编码',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 4
@@ -47,8 +47,8 @@ CREATE TABLE `t_auth_role`
     `id`         bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
     `name`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色名称',
     `code`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '角色唯一编码',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 6
@@ -63,9 +63,9 @@ DROP TABLE IF EXISTS `t_auth_role_element_operation`;
 CREATE TABLE `t_auth_role_element_operation`
 (
     `id`                 bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `roleId`             bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
-    `elementOperationId` bigint(0)   NULL DEFAULT NULL COMMENT '元素操作id',
-    `createTime`         datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `role_id`            bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
+    `element_operation_id` bigint(0)   NULL DEFAULT NULL COMMENT '元素操作id',
+    `create_time`        datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
@@ -80,9 +80,9 @@ DROP TABLE IF EXISTS `t_auth_role_menu`;
 CREATE TABLE `t_auth_role_menu`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `roleId`     bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
-    `menuId`     bigint(0)   NULL DEFAULT NULL COMMENT '页面菜单id',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `role_id`    bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
+    `menu_id`    bigint(0)   NULL DEFAULT NULL COMMENT '页面菜单id',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 3
@@ -97,11 +97,11 @@ DROP TABLE IF EXISTS `t_collection_group`;
 CREATE TABLE `t_collection_group`
 (
     `id`         bigint(0)                                                    NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
+    `user_id`    bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
     `name`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '关注分组名称',
     `type`       varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '关注分组类型：0默认分组  1用户自定义分组',
-    `createTime` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                  NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                  NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 27
@@ -116,8 +116,8 @@ DROP TABLE IF EXISTS `t_content`;
 CREATE TABLE `t_content`
 (
     `id`            bigint(0)   NOT NULL AUTO_INCREMENT,
-    `contentDetail` json        NULL COMMENT '内容详情',
-    `createTime`    datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `content_detail` json        NULL COMMENT '内容详情',
+    `create_time`   datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 71
@@ -132,11 +132,11 @@ DROP TABLE IF EXISTS `t_danmu`;
 CREATE TABLE `t_danmu`
 (
     `id`         bigint(0)                                                    NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
-    `videoId`    bigint(0)                                                    NULL DEFAULT NULL COMMENT '视频Id',
+    `user_id`    bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
+    `video_id`   bigint(0)                                                    NULL DEFAULT NULL COMMENT '视频Id',
     `content`    text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci        NULL COMMENT '弹幕内容',
-    `danmuTime`  varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '弹幕出现时间',
-    `createTime` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
+    `danmu_time` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '弹幕出现时间',
+    `create_time` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 369
@@ -154,7 +154,7 @@ CREATE TABLE `t_file`
     `url`        varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件存储路径',
     `type`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '文件类型',
     `md5`        varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件md5唯一标识串',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 66
@@ -169,11 +169,11 @@ DROP TABLE IF EXISTS `t_following_group`;
 CREATE TABLE `t_following_group`
 (
     `id`         bigint(0)                                                    NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
+    `user_id`    bigint(0)                                                    NULL DEFAULT NULL COMMENT '用户id',
     `name`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '关注分组名称',
     `type`       varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '关注分组类型：0特别关注  1悄悄关注 2默认分组  3用户自定义分组',
-    `createTime` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                  NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                  NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                  NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 27
@@ -188,9 +188,9 @@ DROP TABLE IF EXISTS `t_refresh_token`;
 CREATE TABLE `t_refresh_token`
 (
     `id`           bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`       bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
-    `refreshToken` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '刷新令牌',
-    `createTime`   datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `user_id`      bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
+    `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '刷新令牌',
+    `create_time`   datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 15
@@ -206,7 +206,7 @@ CREATE TABLE `t_tag`
 (
     `id`         bigint(0)                                                     NOT NULL AUTO_INCREMENT,
     `name`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL,
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 120
@@ -225,8 +225,8 @@ CREATE TABLE `t_user`
     `email`      varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '邮箱',
     `password`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '密码',
     `salt`       varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '盐值',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 44
@@ -241,10 +241,10 @@ DROP TABLE IF EXISTS `t_user_coin`;
 CREATE TABLE `t_user_coin`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
+    `user_id`    bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
     `amount`     bigint(0)   NULL DEFAULT NULL COMMENT '硬币总数',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 5
@@ -259,10 +259,10 @@ DROP TABLE IF EXISTS `t_user_following`;
 CREATE TABLE `t_user_following`
 (
     `id`          bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`      bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
-    `followingId` int(0)      NULL DEFAULT NULL COMMENT '关注用户id',
-    `groupId`     int(0)      NULL DEFAULT NULL COMMENT '关注分组id',
-    `createTime`  datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `user_id`     bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
+    `following_id` int(0)      NULL DEFAULT NULL COMMENT '关注用户id',
+    `group_id`     int(0)      NULL DEFAULT NULL COMMENT '关注分组id',
+    `create_time`  datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 66
@@ -277,14 +277,14 @@ DROP TABLE IF EXISTS `t_user_info`;
 CREATE TABLE `t_user_info`
 (
     `id`         bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `userId`     bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
+    `user_id`    bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
     `nick`       varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '昵称',
     `avatar`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '头像',
     `sign`       text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci         NULL COMMENT '签名',
     `gender`     varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci   NULL DEFAULT NULL COMMENT '性别：0男 1女 2未知',
     `birth`      varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  NULL DEFAULT NULL COMMENT '生日',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 37
@@ -299,11 +299,11 @@ DROP TABLE IF EXISTS `t_user_moments`;
 CREATE TABLE `t_user_moments`
 (
     `id`         bigint(0)                                                   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)                                                   NULL DEFAULT NULL COMMENT '用户id',
+    `user_id`    bigint(0)                                                   NULL DEFAULT NULL COMMENT '用户id',
     `type`       varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '动态类型：0视频 1直播 2专栏动态',
-    `contentId`  bigint(0)                                                   NULL DEFAULT NULL COMMENT '内容详情id',
-    `createTime` datetime(0)                                                 NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0)                                                 NULL DEFAULT NULL COMMENT '更新时间',
+    `content_id`  bigint(0)                                                   NULL DEFAULT NULL COMMENT '内容详情id',
+    `create_time` datetime(0)                                                 NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                 NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 42
@@ -318,9 +318,9 @@ DROP TABLE IF EXISTS `t_user_role`;
 CREATE TABLE `t_user_role`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT,
-    `userId`     bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
-    `roleId`     bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `user_id`    bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
+    `role_id`    bigint(0)   NULL DEFAULT NULL COMMENT '角色id',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 25
@@ -335,7 +335,7 @@ DROP TABLE IF EXISTS `t_video`;
 CREATE TABLE `t_video`
 (
     `id`          bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`      bigint(0)                                                     NOT NULL COMMENT '用户id',
+    `user_id`     bigint(0)                                                     NOT NULL COMMENT '用户id',
     `url`         varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '视频链接',
     `thumbnail`   longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci     NOT NULL COMMENT '封面链接',
     `title`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '视频标题',
@@ -343,8 +343,8 @@ CREATE TABLE `t_video`
     `duration`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '视频时长',
     `area`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '所在分区：0鬼畜 1音乐 2电影',
     `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci         NULL COMMENT '视频简介',
-    `createTime`  datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime`  datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 111
@@ -359,11 +359,11 @@ DROP TABLE IF EXISTS `t_video_binary_picture`;
 CREATE TABLE `t_video_binary_picture`
 (
     `id`             bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `videoId`        bigint(0)                                                     NULL DEFAULT NULL COMMENT '视频id',
-    `frameNo`        int(0)                                                        NULL DEFAULT NULL COMMENT '帧数',
+    `video_id`       bigint(0)                                                     NULL DEFAULT NULL COMMENT '视频id',
+    `frame_no`       int(0)                                                        NULL DEFAULT NULL COMMENT '帧数',
     `url`            varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '图片链接',
-    `videoTimestamp` bigint(0)                                                     NULL DEFAULT NULL COMMENT '视频时间戳',
-    `createTime`     datetime(0)                                                   NULL DEFAULT NULL,
+    `video_timestamp` bigint(0)                                                     NULL DEFAULT NULL COMMENT '视频时间戳',
+    `create_time`    datetime(0)                                                   NULL DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 89
@@ -378,11 +378,11 @@ DROP TABLE IF EXISTS `t_video_coin`;
 CREATE TABLE `t_video_coin`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '视频投稿id',
-    `userId`     bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
-    `videoId`    bigint(0)   NULL DEFAULT NULL COMMENT '视频投稿id',
+    `user_id`    bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
+    `video_id`   bigint(0)   NULL DEFAULT NULL COMMENT '视频投稿id',
     `amount`     int(0)      NULL DEFAULT NULL COMMENT '投币数',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 10
@@ -397,10 +397,10 @@ DROP TABLE IF EXISTS `t_video_collection`;
 CREATE TABLE `t_video_collection`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `videoId`    bigint(0)   NULL DEFAULT NULL COMMENT '视频投稿id',
-    `userId`     bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
-    `groupId`    bigint(0)   NULL DEFAULT NULL COMMENT '收藏分组id',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `video_id`   bigint(0)   NULL DEFAULT NULL COMMENT '视频投稿id',
+    `user_id`    bigint(0)   NULL DEFAULT NULL COMMENT '用户id',
+    `group_id`   bigint(0)   NULL DEFAULT NULL COMMENT '收藏分组id',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 30
@@ -415,13 +415,13 @@ DROP TABLE IF EXISTS `t_video_comment`;
 CREATE TABLE `t_video_comment`
 (
     `id`          bigint(0)                                             NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `videoId`     bigint(0)                                             NOT NULL COMMENT '视频id',
-    `userId`      bigint(0)                                             NOT NULL COMMENT '用户id',
+    `video_id`    bigint(0)                                             NOT NULL COMMENT '视频id',
+    `user_id`     bigint(0)                                             NOT NULL COMMENT '用户id',
     `comment`     text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评论',
-    `replyUserId` bigint(0)                                             NULL DEFAULT NULL COMMENT '回复用户id',
-    `rootId`      bigint(0)                                             NULL DEFAULT NULL COMMENT '根节点评论id',
-    `createTime`  datetime(0)                                           NULL DEFAULT NULL COMMENT '创建时间',
-    `updateTime`  datetime(0)                                           NULL DEFAULT NULL COMMENT '更新时间',
+    `reply_user_id` bigint(0)                                             NULL DEFAULT NULL COMMENT '回复用户id',
+    `root_id`     bigint(0)                                             NULL DEFAULT NULL COMMENT '根节点评论id',
+    `create_time` datetime(0)                                           NULL DEFAULT NULL COMMENT '创建时间',
+    `update_time` datetime(0)                                           NULL DEFAULT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 112
@@ -436,9 +436,9 @@ DROP TABLE IF EXISTS `t_video_like`;
 CREATE TABLE `t_video_like`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`     bigint(0)   NOT NULL COMMENT '用户id',
-    `videoId`    bigint(0)   NOT NULL COMMENT '视频投稿id',
-    `createTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+    `user_id`    bigint(0)   NOT NULL COMMENT '用户id',
+    `video_id`   bigint(0)   NOT NULL COMMENT '视频投稿id',
+    `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 35
@@ -453,10 +453,10 @@ DROP TABLE IF EXISTS `t_video_operation`;
 CREATE TABLE `t_video_operation`
 (
     `id`            bigint(0)                                                   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `userId`        bigint(0)                                                   NULL DEFAULT NULL COMMENT '用户id',
-    `videoId`       bigint(0)                                                   NULL DEFAULT NULL COMMENT '视频id',
-    `operationType` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '操作类型：0点赞、1收藏、2投币',
-    `createTime`    datetime(0)                                                 NULL DEFAULT NULL COMMENT '创建时间',
+    `user_id`       bigint(0)                                                   NULL DEFAULT NULL COMMENT '用户id',
+    `video_id`      bigint(0)                                                   NULL DEFAULT NULL COMMENT '视频id',
+    `operation_type` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '操作类型：0点赞、1收藏、2投币',
+    `create_time`   datetime(0)                                                 NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 72
@@ -471,9 +471,9 @@ DROP TABLE IF EXISTS `t_video_tag`;
 CREATE TABLE `t_video_tag`
 (
     `id`         bigint(0)   NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `videoId`    bigint(0)   NOT NULL COMMENT '视频id',
-    `tagId`      bigint(0)   NOT NULL COMMENT '标签id',
-    `createTime` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+    `video_id`   bigint(0)   NOT NULL COMMENT '视频id',
+    `tag_id`     bigint(0)   NOT NULL COMMENT '标签id',
+    `create_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 254
@@ -488,16 +488,14 @@ DROP TABLE IF EXISTS `t_video_view`;
 CREATE TABLE `t_video_view`
 (
     `id`         bigint(0)                                                     NOT NULL AUTO_INCREMENT COMMENT '主键id',
-    `videoId`    bigint(0)                                                     NOT NULL COMMENT '视频id',
-    `userId`     bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
-    `clientId`   varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '客户端id',
+    `video_id`   bigint(0)                                                     NOT NULL COMMENT '视频id',
+    `user_id`    bigint(0)                                                     NULL DEFAULT NULL COMMENT '用户id',
+    `client_id`  varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '客户端id',
     `ip`         varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci  NULL DEFAULT NULL COMMENT 'ip',
-    `createTime` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
+    `create_time` datetime(0)                                                   NULL DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 17
   CHARACTER SET = utf8mb3
   COLLATE = utf8mb3_general_ci COMMENT = '视频观看记录表'
   ROW_FORMAT = Dynamic;
-
-SET FOREIGN_KEY_CHECKS = 1;

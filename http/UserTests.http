@@ -1,0 +1,27 @@
+### Test @PostMapping("/users")
+
+POST http://localhost:4000/users
+Content-Type: application/json
+Authorization: Bearer
+
+{
+  "phone": "1234567890",
+  "password": "g83xkMCMMmjpHqBDOWNmKSeaQO49By00og7/Cir2BF8T8JAjw2G3vc3A1TuH8GLVGjo6WaC07hUXaqC91ipeAG/TLC8NT+sXKk7I3Krj4XZO7HSlOHuO0lcJ4fqqK/KjOgNjHT6ConeDJjU9cqeT560JQeioHGN1ExAtEA+k5PI="
+}
+
+### Test @PostMapping("/user-tokens")
+
+POST http://localhost:4000/user-tokens
+Content-Type: application/json
+Authorization: Bearer
+
+{
+"phone": "1234567890",
+"password": "g83xkMCMMmjpHqBDOWNmKSeaQO49By00og7/Cir2BF8T8JAjw2G3vc3A1TuH8GLVGjo6WaC07hUXaqC91ipeAG/TLC8NT+sXKk7I3Krj4XZO7HSlOHuO0lcJ4fqqK/KjOgNjHT6ConeDJjU9cqeT560JQeioHGN1ExAtEA+k5PI="
+}
+
+### Test @GetMapping("/users")
+
+GET http://localhost:4000/users
+Content-Type: application/json
+token: eyJraWQiOiI0NCIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiLnrb7lj5HogIUiLCJleHAiOjE3MjMwNzM4OTR9.asy6OxhRGS0pUZceHbZ9V3LgkuhlNN3PyFn6gkPge1phZ4dqfkeQWqw5kOKqQVuIlhpUuZ4BD1TBUhVAXcL-T1x7xwm_x77rrx9jTlM9aqBZ_LUfgyE9fxw508PpAIxynaHIRM-wW4wBvdZkQyiqzXFZm_04U9Ha0-TBkZid2F8

@@ -1,5 +1,6 @@
 package com.weilai.wetube.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,8 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "t_user")
 public class User {
 
@@ -28,10 +28,10 @@ public class User {
     @Column(length = 50, nullable = true)
     private String salt;
 
-    @Column(nullable = true)
+    @Column(name = "createTime", nullable = true)
     private LocalDateTime createTime;
 
-    @Column(nullable = true)
+    @Column(name = "updateTime", nullable = true)
     private LocalDateTime updateTime;
 
     @Transient
