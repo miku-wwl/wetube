@@ -38,4 +38,7 @@ public class UserInfo {
 
     @Column(nullable = true)
     private LocalDateTime updateTime;
+
+    @Transient
+    private Boolean followed;
 }

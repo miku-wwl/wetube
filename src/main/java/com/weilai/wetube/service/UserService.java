@@ -1,7 +1,9 @@
 package com.weilai.wetube.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mysql.cj.util.StringUtils;
 
+import com.weilai.wetube.domain.PageResult;
 import com.weilai.wetube.domain.constant.UserConstant;
 import com.weilai.wetube.domain.exception.ConditionException;
 import com.weilai.wetube.entity.User;
@@ -16,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -29,12 +31,14 @@ public class UserService {
     private UserInfoRepository userInfoRepository;
 
     public void addUser(User user) {
-        String phone = user.getPhone();
-        if (StringUtils.isNullOrEmpty(phone)) {
-            throw new ConditionException("手机号不能为空！");
+        String phone = user.getPhone() == null ? "" : user.getPhone();
+        String email = user.getEmail() == null ? "" : user.getEmail();
+        if (StringUtils.isNullOrEmpty(phone) && StringUtils.isNullOrEmpty(email)) {
+            throw new ConditionException("参数异常！");
         }
-        User dbUser = this.getUserByPhone(phone);
-        if (dbUser != null) {
+        Optional<User> dbUser = userRepository.findByPhoneOrEmail(phone, email);
+
+        if (dbUser.isPresent()) {
             throw new ConditionException("该手机号已经注册！");
         }
         Date now = new Date();
@@ -98,5 +102,54 @@ public class UserService {
         UserInfo userInfo = userInfoRepository.findByUserId(userId);
         user.setUserInfo(userInfo);
         return user;
+    }
+
+
+    public void updateUsers(User user) throws Exception {
+        Long id = user.getId();
+        Optional<User> dbUser = userRepository.findById(id);
+
+        if (dbUser.isEmpty()) {
+            throw new ConditionException("用户不存在！");
+        }
+        if (!StringUtils.isNullOrEmpty(user.getPassword())) {
+            String rawPassword = RSAUtil.decrypt(user.getPassword());
+            String md5Password = MD5Util.sign(rawPassword, dbUser.get().getSalt(), "UTF-8");
+            user.setPassword(md5Password);
+        }
+        Date now = new Date();
+        user.setUpdateTime(DateUtil.dateToLocalDateTime(now));
+        log.info("[updateUsers] userRepository.updateUser user:{}", user);
+        userRepository.updateUser(user.getPhone(), user.getEmail(), user.getPassword(), user.getUpdateTime(),
+                user.getId());
+    }
+
+    public void updateUserInfos(UserInfo userInfo) {
+        Date now = new Date();
+        userInfo.setUpdateTime(DateUtil.dateToLocalDateTime(now));
+        userInfoRepository.updateUserInfos(userInfo.getNick(), userInfo.getAvatar(), userInfo.getSign(),
+                userInfo.getBirth(), userInfo.getGender(), userInfo.getUpdateTime(), userInfo.getUserId());
+    }
+
+    public User getUserById(Long followingId) {
+        return userRepository.getById(followingId);
+    }
+
+    public List<UserInfo> getUserInfoByUserIds(Set<Long> userIdList) {
+        return userInfoRepository.getUserInfoByUserIds(userIdList);
+    }
+
+    public PageResult<UserInfo> pageListUserInfos(JSONObject params) {
+        Integer no = params.getInteger("no");
+        Integer size = params.getInteger("size");
+        params.put("start", (no - 1) * size);
+        params.put("limit", size);
+
+        Integer total = userInfoRepository.pageCountUserInfos(params.getString("nick"));
+        List<UserInfo> list = new ArrayList<>();
+        if (total > 0) {
+            list = userInfoRepository.pageListUserInfos(params.getString("nick"), (no - 1) * size, size);
+        }
+        return new PageResult<>(total, list);
     }
 }
